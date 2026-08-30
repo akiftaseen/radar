@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-bg: #0b0a09;
+  --color-surface: #141311;
+  --color-surface-2: #1c1a17;
+  --color-surface-3: #24211c;
+  --color-fg: #f2efe8;
+  --color-muted: #9a9488;
+  --color-subtle: #6e695f;
+  --color-border: #2a2722;
+  --color-border-strong: #3d3932;
+  --color-accent: #f2efe8;
+  --color-accent-fg: #0b0a09;
+  --color-priority: #c17f59;
+  --color-priority-dim: #8a5a3e;
+  --color-confidence: #8a9aa8;
+  --color-danger: #c45c4a;
+  --color-success: #7a9a7a;
+  --color-warning: #b08948;
+  --color-info: #7a8a9a;
+
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+
+  --shadow-soft: 0 12px 40px -20px rgb(0 0 0 / 0.55);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-priority) 40%, transparent);
+    color: var(--color-fg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes radar-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.radar-sweep {
+  animation: radar-sweep 8s linear infinite;
+  transform-origin: center;
+}
+
+.rise-in {
+  animation: rise-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
